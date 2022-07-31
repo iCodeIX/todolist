@@ -2,6 +2,8 @@ addEventListener('DOMContentLoaded', (event) => {
     'use strict';
     const todoText = document.querySelector("#newToDoText");
     const todoList = document.querySelector(".todo-list");
+    const emptyValue = document.querySelector(".empty-value");
+    const successAdd = document.querySelector(".success-add");
     let todos = [], serializedArr;
 
     if (localStorage.getItem('todos')) {
@@ -12,6 +14,7 @@ addEventListener('DOMContentLoaded', (event) => {
     document.querySelector(".closeBtnModal").addEventListener('click', hideModal);
     document.querySelector("#addBtnModal").addEventListener('click', () => {
         addTodoItem(todoText.value);
+
     });
     document.querySelector("#clearBtn").addEventListener('click', (() => {
         localStorage.clear();
@@ -62,21 +65,36 @@ addEventListener('DOMContentLoaded', (event) => {
         let addModal = document.querySelector(".add-modal");
         addModal.classList.add("show-add-modal");
         addModal.classList.remove("hide-add-modal");
+       
     }
 
     function hideModal() {
         let addModal = document.querySelector(".add-modal");
         addModal.classList.add("hide-add-modal");
         addModal.classList.remove("show-add-modal");
+        emptyValue.style.display = "none";
     }
 
     function addTodoItem(value) {
-        todos.push({ todoText: value });
-        showTodoList();
 
-        serializedArr = JSON.stringify(todos);
-        localStorage.setItem('todos', serializedArr);
-        todoText.value = "";
+        if (value != "" && value != " ") {
+            todos.push({ todoText: value });
+            showTodoList();
+
+            serializedArr = JSON.stringify(todos);
+            localStorage.setItem('todos', serializedArr);
+            todoText.value = "";
+            hideModal();
+            emptyValue.style.display = "none";
+            successAdd.style.display = "block";
+            setTimeout(() => {
+                successAdd.style.display = "none";
+            }, 2000);
+
+        } else {
+            emptyValue.style.display = "block";
+        }
+
 
     }
 
