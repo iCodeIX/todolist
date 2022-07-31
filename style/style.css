@@ -1,0 +1,259 @@
+:root {
+    --dark-color: #1a2f4b;
+    --light-color: white;
+
+    --blue: blue;
+    --red: crimson;
+}
+
+*,
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+
+}
+
+.icon {
+    font-size: 12px;
+    cursor: pointer;
+    margin: 3px;
+}
+
+
+button {
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--light-color);
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+ul {
+    padding: 0;
+    list-style: none;
+}
+
+.main-container {
+    background-color: var(--dark-color);
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    gap: 30px;
+}
+
+h1 {
+    margin: 20px 0;
+    color: #84c69b;
+}
+
+#addBtn {
+    margin: 0 20px;
+    background-color: var(--blue);
+}
+
+.add-modal {
+
+    background: rgba(40, 71, 92, 0.95);
+    position: absolute;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    padding: 0;
+    z-index: 99;
+
+}
+
+.closeBtnModal {
+    font-size: 20px;
+    float: right;
+}
+
+
+.close-icon {
+    color: var(--red);
+
+}
+
+.add-modal textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+#addBtnModal {
+    background-color: var(--blue);
+    float: right;
+}
+
+/* modal events */
+
+.show-add-modal {
+    display: block;
+    padding: 20px;
+    animation: showing 1s ease-in forwards;
+}
+
+.hide-add-modal {
+    animation: hiding 1s ease-in forwards;
+}
+
+
+@keyframes showing {
+    0% {
+        height: 300px;
+
+    }
+
+    100% {
+        height: 100%;
+    }
+
+}
+
+@keyframes hiding {
+    0% {
+        height: 100%;
+        padding: 20px;
+    }
+
+    100% {
+        height: 0;
+        padding: 0px;
+    }
+
+}
+
+
+
+
+/* to list */
+.todolist-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.todo-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-height: 350px;
+    padding: 10px;
+    overflow: auto;
+
+}
+
+.todo-item {
+    display: flex;
+    padding: 5px;
+    width: 100%;
+    gap: 10px;
+    border-bottom: 1px solid #ddd;
+    background-color: var(--light-color);
+    margin: 5px 0;
+    cursor: pointer;
+    animation: removing 2s ease-in;
+}
+
+.todo-item:nth-child(even) {
+    background-color: #ddd;
+}
+
+.todo-item:hover {
+    background: #000;
+	color:var(--light-color);
+}
+
+.todo-text {
+    text-align: justify;
+    font-size: 0.9rem;
+}
+
+.deleteBtn {
+    background-color: var(--red);
+    font-size: 0.9rem;
+    width: 50px;
+    height: 40px;
+    margin-left: auto;
+    padding:5px;
+}
+
+
+.no-item {
+    display: block;
+    text-align: center;
+    color: var(--light-color);
+    border-radius: 10px;
+    animation: blinking 1s ease infinite;
+    padding:10px;
+    z-index: 10;
+}
+
+@keyframes blinking {
+
+    from{
+        background-color:var(--red);
+        opacity: 0.5;
+    }
+    to{
+        background-color:var(--red);
+        opacity: 1;
+    }
+}
+
+#clearBtn {
+    background-color: var(--red);
+    font-size: 0.9rem;
+    height: 50px;
+}
+
+#clearBtn:visited{
+    background: var(--blue);
+}
+.pending {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 10px 0;
+
+}
+
+.pending p {
+    color: var(--light-color);
+    text-align: center;
+}
+
+
+@media(min-width:600px) {
+
+    .add-modal {
+
+        width: 50%;
+    }
+
+    .todolist-container {
+        width: 50%;
+    }
+
+    .pending{
+        
+        border-bottom: 2px solid var(--light-color);
+        padding:5px;
+    }
+
+
+}
